@@ -56,9 +56,9 @@ def encrypt_data():
             for k in range(img_array.shape[2]):
                 encrypted_array[i][j][k]=(blowfish.blowFish_encrypt(int(img_array[i][j][k])))
     print(encrypted_array)
-    # encrypted_list = encrypted_array.tolist()
+    encrypted_list = encrypted_array.tolist()
 
-    return jsonify({'data': "ok"}), 200
+    return jsonify({'data': encrypted_list}), 200
 
 
 @app.route('/decrypt', methods=['POST'])

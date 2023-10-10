@@ -4,6 +4,7 @@ import axios from 'axios';
 const Encrypt = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [key, setKey] = useState('');
+  const [enc,setEnc]=useState(null)
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -27,6 +28,7 @@ const Encrypt = () => {
             },
         });
         const data=await response
+        // setEnc(data.data)
         console.log('Image and key uploaded successfully:', data.data);
     } catch (error) {
         console.error('Error uploading image and key:', error);
@@ -41,6 +43,8 @@ const Encrypt = () => {
         <input type="text" placeholder="Enter key" onChange={handleKeyChange} />
         <button type="submit">Upload</button>
       </form>
+
+      {/* <p>{enc}</p> */}
     </div>
   );
 };
