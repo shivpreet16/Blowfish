@@ -129,19 +129,6 @@ const Encrypt = () => {
       </div>
     </div>
   );
-
-  // return (
-  //   <div>
-  //     <h2>Image and Key Upload</h2>
-  //     <form onSubmit={handleSubmit}>
-  //       <input type="file" onChange={handleFileChange} />
-  //       <input type="text" placeholder="Enter key" onChange={handleKeyChange} />
-  //       <button type="submit">Upload</button>
-  //     </form>
-
-  //     <pre>{JSON.stringify(enc, null, 2)}</pre>
-  //   </div>
-  // );
 };
 
 export default Encrypt;

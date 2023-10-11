@@ -63,10 +63,12 @@ def encrypt_data():
 
 @app.route('/decrypt', methods=['POST'])
 def decrypt_data():
-    data = request.json.get('data')  # Assuming you receive data as JSON
-    blowfish = Blowfish(request.json.get('key'))
-    decrypted_data = blowfish.blowFish_decrypt(data)
-    return jsonify({'decrypted_data': decrypted_data})
+    data = request.form.get('data')
+    # blowfish = Blowfish(request.form.get('key'))
+    print(data)
+    
+    # decrypted_data = blowfish.blowFish_decrypt(data)
+    # return jsonify({'decrypted_data': decrypted_data})
 
 if __name__ == '__main__':
     app.run(debug=True)
