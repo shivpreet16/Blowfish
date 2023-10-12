@@ -24,9 +24,13 @@ const Decrypt = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
+    let cleanedData = encryptedData.replace(/"/g, '');
+    cleanedData = encryptedData.replace(/  /g, '');
+    cleanedData = encryptedData.replace(/'/g, '');
+    cleanedData = cleanedData.replace(/ /g, ',');
     // const encryptedArray = parseStringToArray(encryptedData);
     // console.log(typeof(encryptedArray));
-    formData.append("data", encryptedData);
+    formData.append("data", cleanedData);
     formData.append("key", key);
     const url = "http://127.0.0.1:5000/decrypt";
 

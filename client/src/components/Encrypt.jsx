@@ -35,8 +35,20 @@ const Encrypt = () => {
         },
       });
       const data = await response;
-      setEnc(data.data.data);
-      console.log(enc);
+      const outputArray = data.data.data.map(innerArray =>
+        innerArray.map(str =>
+          JSON.parse('[' + str
+            .replace(/\[ /g, '[')
+            .replace(/\  /g,' ')
+            .replace(/\[/g, '[')
+            .replace(/\]/g, ']')
+            .replace(/\s+/g, ',') + ']'
+          )
+        )
+      );
+      console.log(outputArray)
+      // setEnc(JSON.stringify(outputArray));
+      setEnc(data.data.data)
     } catch (error) {
       console.error("Error uploading image and key:", error);
     }

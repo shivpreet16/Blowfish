@@ -56,19 +56,32 @@ def encrypt_data():
             for k in range(img_array.shape[2]):
                 encrypted_array[i][j][k]=(blowfish.blowFish_encrypt(int(img_array[i][j][k])))
     print(encrypted_array)
-    encrypted_list = encrypted_array.tolist()
+    # encrypted_list = encrypted_array.tolist()
+    encrypted_list = [[str(cell) for cell in row] for row in encrypted_array]
+    # encrypted_list = [[int(cell) for cell in row] for row in encrypted_list]
 
     return jsonify({'data': encrypted_list}), 200
+
+import numpy as np
+
+def toArray(string):
+    array_list = eval(string)
+
+    numpy_array = np.array(array_list)
+    return numpy_array
+
 
 
 @app.route('/decrypt', methods=['POST'])
 def decrypt_data():
     data = request.form.get('data')
-    # blowfish = Blowfish(request.form.get('key'))
+    blowfish = Blowfish(request.form.get('key'))
     print(data)
+    arr=toArray(data)
     
-    # decrypted_data = blowfish.blowFish_decrypt(data)
-    # return jsonify({'decrypted_data': decrypted_data})
+    decrypted_data = blowfish.blowFish_decrypt(int(arr[0][0][0]))
+    print(decrypted_data)
+    return jsonify({'decrypted_data': "Bewbs"})
 
 if __name__ == '__main__':
     app.run(debug=True)

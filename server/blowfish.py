@@ -333,9 +333,10 @@ class Blowfish:
           
         
 if __name__=='__main__':
-  bl=Blowfish("]")
+  bl=Blowfish("bewbs")
   bl.subkeyGeneration()
   enc=int(input("Enter data to encrypt: "))
-  enc_data=bl.blowFish(enc)
-  print("Encrypted data = ",hex(enc_data))
+  enc_data=bl.blowFish_encrypt(enc)
+  print("Encrypted data = ",int(enc_data))
   print("Decrypted data = ",bl.blowFish_decrypt(enc_data))
+  
