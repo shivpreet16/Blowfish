@@ -7,30 +7,10 @@ const Decrypt = () => {
   const [key, setKey] = useState("");
   const nav = useNavigate();
 
-  function parseStringToArray(inputString) {
-    // Remove whitespace and convert single quotes to double quotes to match JSON format
-    const cleanedString = inputString.replace(/'/g, '"').replace(/\s/g, "");
-
-    // Parse the cleaned string as JSON
-    try {
-      const parsedArray = JSON.parse(cleanedString);
-      return parsedArray;
-    } catch (error) {
-      console.error("Error parsing the input string:", error);
-      return null;
-    }
-  }
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    let cleanedData = encryptedData.replace(/"/g, '');
-    cleanedData = encryptedData.replace(/  /g, '');
-    cleanedData = encryptedData.replace(/'/g, '');
-    cleanedData = cleanedData.replace(/ /g, ',');
-    // const encryptedArray = parseStringToArray(encryptedData);
-    // console.log(typeof(encryptedArray));
-    formData.append("data", cleanedData);
+    formData.append("data", encryptedData);
     formData.append("key", key);
     const url = "http://127.0.0.1:5000/decrypt";
 

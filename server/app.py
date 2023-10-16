@@ -64,21 +64,21 @@ def encrypt_data():
 
 import numpy as np
 
-def toArray(string):
-    array_list = eval(string)
 
-    numpy_array = np.array(array_list)
-    return numpy_array
-
+def extract_integers(s):
+    parts = s.strip('[]"\n\r ').split()
+    return [int(x) for x in parts]
 
 
 @app.route('/decrypt', methods=['POST'])
 def decrypt_data():
     data = request.form.get('data')
     blowfish = Blowfish(request.form.get('key'))
-    print(data)
-    arr=toArray(data)
-    
+    data = data.replace('"\n[', '[').replace(']"', ']')
+    data = data.strip()
+    rows = data.split('],[')
+    arr = np.array([[extract_integers(s) for s in row.split(',')] for row in rows], dtype=np.uint64)
+    # print(arr)
     decrypted_data = blowfish.blowFish_decrypt(int(arr[0][0][0]))
     print(decrypted_data)
     return jsonify({'decrypted_data': "Bewbs"})

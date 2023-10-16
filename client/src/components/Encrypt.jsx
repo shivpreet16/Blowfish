@@ -35,20 +35,22 @@ const Encrypt = () => {
         },
       });
       const data = await response;
-      const outputArray = data.data.data.map(innerArray =>
-        innerArray.map(str =>
-          JSON.parse('[' + str
-            .replace(/\[ /g, '[')
-            .replace(/\  /g,' ')
-            .replace(/\[/g, '[')
-            .replace(/\]/g, ']')
-            .replace(/\s+/g, ',') + ']'
-          )
-        )
-      );
-      console.log(outputArray)
-      // setEnc(JSON.stringify(outputArray));
-      setEnc(data.data.data)
+      // const outputArray = data.data.data.map((innerArray) =>
+      //   innerArray.map((str) =>
+      //     JSON.parse(
+      //       "[" +
+      //         str
+      //           .replace(/\[/g, "[")
+      //           .replace(/\[\s+/g, "[")
+      //           .replace(/\s+/g, ",")
+      //           .replace(/\s+\]/g, "]") +
+      //         "]"
+      //     )
+      //   )
+      // );
+      // console.log(outputArray);
+      // setEnc(outputArray);
+      setEnc(data.data.data);
     } catch (error) {
       console.error("Error uploading image and key:", error);
     }
@@ -57,7 +59,9 @@ const Encrypt = () => {
   const handleCopyClick = (e) => {
     e.preventDefault();
     navigator.clipboard.writeText(JSON.stringify(enc, null, 2));
-    alert("Copied encrypted array to clipboard! Do not forget to share your key as well")
+    alert(
+      "Copied encrypted array to clipboard! Do not forget to share your key as well"
+    );
   };
 
   const nav = useNavigate();
@@ -131,7 +135,10 @@ const Encrypt = () => {
             <span className="text-[#cba094] text-xl font-medium py-2">
               Encrypted text
             </span>
-            <div className="overflow-x-hidden h-3/4 px-5 cursor-copy" onClick={handleCopyClick}>
+            <div
+              className="overflow-x-hidden h-3/4 px-5 cursor-copy"
+              onClick={handleCopyClick}
+            >
               <pre className="text-[#9bb7e4]">
                 {JSON.stringify(enc, null, 2)}
               </pre>
