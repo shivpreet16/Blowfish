@@ -66,7 +66,7 @@ const Decrypt = () => {
               className="w-fit bg-[#9bb7e4] px-2 py-2 text-[#592d20]"
               type="submit"
             >
-              Encrypt
+              Decrypt
             </button>
           </div>
         </form>
