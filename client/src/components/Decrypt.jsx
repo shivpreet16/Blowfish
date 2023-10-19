@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Decrypt = () => {
   const [encryptedData, setEncryptedData] = useState("");
+  const [imageData, setImageData] = useState("");
   const [key, setKey] = useState("");
   const nav = useNavigate();
 
@@ -13,17 +14,28 @@ const Decrypt = () => {
     formData.append("data", encryptedData);
     formData.append("key", key);
     const url = "http://127.0.0.1:5000/decrypt";
-
     try {
-      const response = await axios.post(url, formData, {
+      const response = await axios.post('http://127.0.0.1:5000/decrypt', formData, {
+        responseType: 'arraybuffer',
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
       });
-      const data = await response;
-      console.log(data)
+      const data=await response
+      // const contentType = response.headers['content-type'];
+      // const base64 = btoa(
+      //   new Uint8Array(response.data).reduce(
+      //     (data, byte) => data + String.fromCharCode(byte),
+      //     ''
+      //   )
+      // );
+      // const dataUrl = `data:${contentType};base64,${base64}`;
+
+      // const blob = new Blob([response.data], {type: 'image/png'})
+      // const imgURL = URL.createObjectURL(blob)
+      // setImageData(imgURL);
     } catch (error) {
-      console.error("Error uploading image and key:", error);
+      console.error('Error fetching image:', error);
     }
   };
 
@@ -70,6 +82,8 @@ const Decrypt = () => {
             </button>
           </div>
         </form>
+        <img src={imageData} alt="decrypted-image" className="h-20 w-20"/>
+        {/* <span className="text-slate-50">{imageData}</span> */}
       </div>
     </div>
   );
