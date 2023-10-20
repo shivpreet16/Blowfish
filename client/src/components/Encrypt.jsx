@@ -6,7 +6,7 @@ import "../Encrypt.css";
 const Encrypt = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [key, setKey] = useState("");
-  const [enc, setEnc] = useState([]);
+  const [enc, setEnc] = useState("");
   const [imgUrl, setImgUrl] = useState(null);
 
   const handleFileChange = function (e) {
@@ -43,7 +43,7 @@ const Encrypt = () => {
 
   const handleCopyClick = (e) => {
     e.preventDefault();
-    navigator.clipboard.writeText(JSON.stringify(enc, null, 2));
+    navigator.clipboard.writeText(enc);
     alert(
       "Copied encrypted array to clipboard! Do not forget to share your key as well"
     );
@@ -124,9 +124,9 @@ const Encrypt = () => {
               className="overflow-x-hidden h-3/4 px-5 cursor-copy"
               onClick={handleCopyClick}
             >
-              <pre className="text-[#9bb7e4]">
-                {JSON.stringify(enc, null, 2)}
-              </pre>
+              <span className="text-[#9bb7e4]">
+                {enc}
+              </span>
             </div>
           </div>
         </div>
