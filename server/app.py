@@ -11,7 +11,6 @@ from bson import ObjectId
 import pickle
 
 app = Flask(__name__)
-# blowfish = None
 CORS(app)
 
 mongoURI = os.environ.get('MONGO_URI')

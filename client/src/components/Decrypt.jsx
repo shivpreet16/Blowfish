@@ -13,7 +13,6 @@ const Decrypt = () => {
     const formData = new FormData();
     formData.append("data", encryptedData);
     formData.append("key", key);
-    const url = "http://127.0.0.1:5000/decrypt";
     try {
       const response = await axios.post(
         "http://127.0.0.1:5000/decrypt",
