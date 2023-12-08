@@ -10,6 +10,9 @@ This project implements Blowfish Crytography algorithms on images. The user can 
 3. Python for Blowfish logic
 4. MongoDB for storing encrypted array
 
+## Block Diagram of Working
+![_blowfish ](https://github.com/shivpreet16/Blowfish/assets/91965754/ee908692-c4b7-4a1d-8f5b-38cb298d9af6)
+
 ## Contributors
 1. [Shivpreet Padhi](https://github.com/shivpreet16) : Blowfish logic, Flask backend, testing
 2. [Jayanti Goswami](https://github.com/Jayanti2919) : Frontend, storing in MongoDB, connecting frontend and backend
